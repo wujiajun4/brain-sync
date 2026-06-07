@@ -2,13 +2,11 @@
 name: brain-sync
 version: "1.1.0"
 description: >-
-  L1: Keeps Memory MCP (cerebellum) and Obsidian (brain) in sync without
-  duplication. Auto-extracts triggers+relations for fast reflexes, leaves deep
-  docs for reasoning. L2: full pipeline, TRUST 5 quality gate, drift detection.
-argument-hint: "brain-sync | sync new skill | sync after changes"
+  L1: Keeps Memory MCP (cerebellum) and Obsidian (brain) in sync without duplication. Auto-extracts triggers+relations for fast reflexes, leaves deep docs for reasoning. L2: full pipeline, TRUST 5 quality gate, drift detection. | 中文触发：记忆同步。 Use this skill when the user mentions memory sync / brain sync / context save / 记忆管理 / 同步知识库.
 allowed-tools: Read, Write, Bash
 user-invocable: true
 tags: [memory, sync, knowledge-management, workflow, optimization]
+argument-hint: "brain-sync | sync new skill | sync after changes"
 
 # MoAI-style Progressive Disclosure
 progressive_disclosure:
