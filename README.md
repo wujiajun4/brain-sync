@@ -13,6 +13,10 @@
 
 [Features](#features) · [Install](#install) · [Architecture](#architecture) · [Contributing](#contributing)
 
+<br/>
+
+<code>npx skills add wujiajun4/brain-sync -g</code>
+
 </div>
 
 ---
