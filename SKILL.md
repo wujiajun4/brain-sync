@@ -1,6 +1,6 @@
 ---
 name: brain-sync
-version: "1.1.0"
+version: "1.2.0"
 description: >-
   L1: Keeps Memory MCP (cerebellum) and Obsidian (brain) in sync without duplication. Auto-extracts triggers+relations for fast reflexes, leaves deep docs for reasoning. L2: full pipeline, TRUST 5 quality gate, drift detection. | 中文触发：记忆同步。 Use this skill when the user mentions memory sync / brain sync / context save / 记忆管理 / 同步知识库.
 allowed-tools: Read, Write, Bash
@@ -33,6 +33,13 @@ triggers:
     - "drift-check"
     - "sync-snapshot"
     - "quality-verify"
+
+# Changelog (newest first)
+changelog: |
+  v1.2.0 (2026-06-08): + 3 个 bin 工具 (compress-obs, check-drift, hot-trigger-audit)
+  v1.1.1 (2026-06-07): SKILL.md frontmatter 标准化
+  v1.1.0 (2026-05-XX): TRUST 5 quality gate
+  v1.0.0 (2026-05-XX): 初始版本
 ---
 
 <!-- PROGRESSIVE DISCLOSURE: This is the full SKILL.md.
@@ -160,6 +167,114 @@ After every sync, verify all 5 dimensions. **If any fails, report it — don't s
 | **U**nified | Are the two brains consistent? | Memory MCP tool count ≈ skill-directory section count |
 | **S**ecure | No secrets leaked into observations? | grep for `ghp_`, `sk-`, `token`, `密码` in entity names and observations |
 | **T**rackable | Is there a sync report? | Output the report table below |
+
+### R 维度辅助工具：compress-obs.mjs
+
+每次写 obs 都要手工压到 ≤200 chars 很烦。`bin/compress-obs.mjs` 自动化这件事：
+
+```bash
+# 从 stdin（最常用）
+echo "long text..." | node ~/.claude/skills/brain-sync/bin/compress-obs.mjs
+
+# 从 argv
+node ~/.claude/skills/brain-sync/bin/compress-obs.mjs "long text..."
+
+# 从文件
+node ~/.claude/skills/brain-sync/bin/compress-obs.mjs /path/to/text.md
+
+# 输出 JSON 数组（直接喂给 mcp__memory__add_observations）
+node ~/.claude/skills/brain-sync/bin/compress-obs.mjs --json "long text..."
+
+# 仅检查（不切分）
+node ~/.claude/skills/brain-sync/bin/compress-obs.mjs --check "text"
+```
+
+**智能切分规则**：
+- 按 `。！？；.!?;\n` 切分（保留标点）
+- `.letter` 模式（文件扩展名/域名，如 `MEMORY.md`）**不切** — 保护 URL/path
+- 单个超长无标点句子 → 200 chars 截断 + `...`
+- 累计拼接分句到 ≤200 chars / obs
+- 默认输出 3 条候选 obs
+
+**何时用**：写 obs 之前发现文本超 200 chars 时 → 先跑 compress → 再 add_observations。**避免 delete+add 来回 2 次的麻烦**。
+
+### U 维度辅助工具：check-drift.mjs
+
+自动检测 Memory MCP 实体 ↔ MEMORY.md 索引的漂移。挡住"写 memory 忘更新索引"的低层错误。
+
+```bash
+# stdin 模式（Claude 自动化用）
+# 第一行: MEMORY.md 路径
+# 后续每行: Memory MCP 实体名
+mcp__memory__read_graph | node ~/.claude/skills/brain-sync/bin/check-drift.mjs
+# ↑ 实际由 Claude 把 read_graph 输出转成每行一个实体名喂进来
+
+# CLI 模式（人工测试）
+node ~/.claude/skills/brain-sync/bin/check-drift.mjs \
+  /Users/mac/.claude/projects/-Users-mac/memory/MEMORY.md \
+  entity-name-1 entity-name-2 entity-name-3
+
+# 包含所有实体（不 filter）
+node ~/.claude/skills/brain-sync/bin/check-drift.mjs --include-all <args>
+```
+
+**核心特性**：
+- **Filter by prefix**: 默认只检查 `feedback_` / `project_` / `preference_` 前缀的实体（disk memory 镜像类）。Skill/Orchestra/Tool 实体**不**在 MEMORY.md 索引中，是设计预期。
+- **JSON 报告**: missing[] / extra[] / drift 布尔 / warnings[]
+- **Exit code**: 0=无漂移 / 1=有漂移 / 2=参数错（CI 友好）
+- **真实漂移**：脚本一次性发现并修复 7 个真漂移（1 个 slug 错 + 2 个孤儿 disk 缺 + 5 个索引漏）
+
+**何时用**：
+- 改完 MEMORY.md → 跑一次（CI gate）
+- 新建 disk memory .md → 跑一次（确保索引同步）
+- 定期 audit（每周一次）→ 防止漂移累积
+
+### Hot-trigger 被动审计：hot-trigger-audit.mjs
+
+**不依赖 UserPromptSubmit hook 恢复**，纯静态分析 hot-trigger 表格。
+
+```bash
+# 默认：人类可读报告
+node ~/.claude/skills/brain-sync/bin/hot-trigger-audit.mjs
+
+# JSON 输出
+node ~/.claude/skills/brain-sync/bin/hot-trigger-audit.mjs --json
+
+# 静默：healthy 时无输出，异常时 stderr + exit 1（适合 SessionStart）
+node ~/.claude/skills/brain-sync/bin/hot-trigger-audit.mjs --quiet
+```
+
+**数据源**（自动检测）：
+- 优先：`~/.claude/hot-trigger-list.md`（独立文件，2026-06-08 从 CLAUDE.md 搬出来）
+- Fallback：`~/.claude/CLAUDE.md`（旧位置，向后兼容）
+
+**审计维度**：
+- **total** vs **active**：总条目数 vs 实际活条目（排除 reserved / 空行）
+- **dead_skills**：引用的 skill 目录不存在（卸载了但触发器还在）
+- **duplicates**：trigger 词被多个条目共享（潜在歧义）
+- **bloat**：总条目 > 45 触发膨胀警告
+
+**当前状态**：37 total / 36 active / 0 dead / 0 dup / healthy ✅
+
+**何时用**：
+- SessionStart 静默模式（已经启着，加一行 stderr 即可）
+- 装新 skill 后 → 检查 trigger 是否对齐
+- 半年一次的 hot-trigger list 健康检查
+
+**与 #4 完整 audit 区别**：#4 需要 hook 恢复 + 7 天 runtime 数据；本工具是**零侵入静态分析**。先跑这个，等 #4 数据充足后再切。
+
+### Hot-trigger 表存放位置（2026-06-08 优化）
+
+**问题**：CLAUDE.md 顶部原本有 47 行 hot-trigger 表格，每次 Claude 启动都全文加载 = 浪费 ~1250 tokens。
+
+**解决**：
+- 完整 37 项表搬出到独立文件 `~/.claude/hot-trigger-list.md`（76 行，含维护规则）
+- CLAUDE.md 顶部只留**指针段**（8 行） + 总结 + 审计工具路径
+- 完整 trigger 词只在需要 lookup 时才 fetch 新文件
+
+**节省**：每次 Claude 启动省 ~1250 tokens ≈ 0.3-0.5s 启动加速 + 大量 token 预算。
+
+**审计工具自动检测**：优先读新文件，旧位置 fallback。
 
 ### TRUST 5 快速自检
 

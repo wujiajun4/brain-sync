@@ -6,7 +6,7 @@
 
 **小脑快反应。大脑深记忆。零漂移。**
 
-[![version](https://img.shields.io/badge/version-1.1.0-blue)](https://github.com/wujiajun4/brain-sync)
+[![version](https://img.shields.io/badge/version-1.2.0-blue)](https://github.com/wujiajun4/brain-sync)
 [![platform](https://img.shields.io/badge/platform-Claude%20Code%20%7C%20Agent%20Skills-purple)](https://skills.sh)
 [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![lang](https://img.shields.io/badge/lang-EN%20%7C%20%E4%B8%AD%E6%96%87-brightgreen)](#)
@@ -50,6 +50,9 @@ information (triggers, relations, orchestras), and stores it in Memory MCP for
 | ➕ **Auto-sync Missing** | Creates entities for skills not yet in Memory MCP |
 | 🔗 **Auto-relations** | Links every new tool to its orchestra |
 | 👻 **Ghost Pruning** | Removes entities that no longer exist in Obsidian |
+| ✂️ **obs Compress** | Auto-split observations ≤ 200 chars (TRUST 5 R dimension) |
+| 📑 **Drift Check** | CLI tool: scan Memory MCP ↔ MEMORY.md, find missing entities |
+| 🎯 **Hot-Trigger Audit** | CLI tool: static analysis of CLAUDE.md hot-trigger list health |
 | ✅ **TRUST 5 Quality Gate** | Tested · Readable · Unified · Secure · Trackable |
 | 📊 **Sync Report** | Before/after table with pass/fail for each dimension |
 | 🎚️ **Progressive Disclosure** | L1 150-token summary → L2 4000-token full spec |
@@ -92,7 +95,9 @@ information (triggers, relations, orchestras), and stores it in Memory MCP for
 │                                             │
 │  ┌──────────────────────────────────────┐   │
 │  │         Sync Report                  │   │
-│  │  Tools: 7→9  Prefs: 11→12  Ghosts:0  │   │
+│  │  Tools: 10+  Prefs: 12  Ghosts: 0   │   │
+│  │  + bin/compress-obs + check-drift    │   │
+│  │  + bin/hot-trigger-audit (v1.2)     │   │
 │  └──────────────────────────────────────┘   │
 └─────────────────────────────────────────────┘
 ```
@@ -106,8 +111,12 @@ brain-sync/
 ├── .gitignore
 ├── LICENSE               # MIT
 ├── README.md             # ← You are here
-└── SKILL.md              # Runtime spec — L1/L2 progressive disclosure
+├── SKILL.md              # Runtime spec — L1/L2 progressive disclosure
                           #   5-step pipeline + TRUST 5 gate + sync report template
+└── bin/                  # CLI helpers (v1.2.0+)
+    ├── compress-obs.mjs      # Auto-split long observations to ≤200 chars
+    ├── check-drift.mjs       # Memory MCP ↔ MEMORY.md drift detection
+    └── hot-trigger-audit.mjs # Static analysis of CLAUDE.md hot-trigger list
 ```
 
 ---
@@ -173,6 +182,25 @@ Issues and PRs welcome. Before submitting — eat your own dog food:
 ```bash
 /preflight --strict
 ```
+
+## Changelog
+
+### v1.2.0 (2026-06-08) — Bin Helpers
+**+ 3 CLI tools** to automate the most common TRUST 5 dimensions:
+- `bin/compress-obs.mjs` — Smart-split observations to ≤200 chars (preserves `.md`/URL paths, handles CJK punctuation)
+- `bin/check-drift.mjs` — Drift detection between Memory MCP entities and MEMORY.md index (filter-prefix support)
+- `bin/hot-trigger-audit.mjs` — Static analysis of CLAUDE.md hot-trigger list (total / active / dead / duplicate / bloat)
+
+Zero new dependencies. Pure Node.js, runs in CI.
+
+### v1.1.1 (2026-06-07)
+- SKILL.md frontmatter standardization (MoAI progressive disclosure + triggers)
+
+### v1.1.0 (2026-05-XX)
+- TRUST 5 quality gate
+
+### v1.0.0 (2026-05-XX)
+- Initial release
 
 ---
 
