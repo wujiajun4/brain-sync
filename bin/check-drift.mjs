@@ -36,6 +36,7 @@
  */
 
 import fs from 'fs';
+import path from 'path';
 
 const MAX_LEN = 200;
 
@@ -57,17 +58,34 @@ function readMemoryMdIndex(filePath) {
  * 实体名转 MEMORY.md slug
  * 例: feedback_harness_optimization_backlog → feedback_harness_optimization_backlog.md
  *     project_shared_claude_account_safety → project_shared_claude_account_safety.md
+ *
+ * v1.3.0 (A3 fix): 显式归一化. 兼容:
+ *   - snake_case: project_x_y → project_x_y.md
+ *   - kebab-case:  project-x-y → project_x_y.md (kebab 转 snake)
+ *   - MEMORY.md 带 memory/ 前缀: path.basename fallback
+ *   - 用户可能写 project_xxx.md / memory/project_xxx.md / project-xxx.md
  */
 function entityToSlug(entityName) {
-  // entity name 已经是 snake_case, 直接加 .md 后缀
-  return `${entityName}.md`;
+  const snake = entityName.replace(/-/g, '_').toLowerCase();
+  return `${snake}.md`;
 }
+
+export { entityToSlug };
 
 /**
  * 把实体名跟 MEMORY.md 索引对比
  */
 function diff(memoryMdEntries, entityNames) {
-  const mdSlugs = new Set(memoryMdEntries.map(e => e.file));
+  // v1.3.0 (B2 fix): 加 path.basename fallback 兼容 memory/ 前缀
+  // 例: 'memory/feedback_x.md' 和 'feedback_x.md' 都视为同一文件
+  const mdSlugs = new Set();
+  const mdSlugsByBasename = new Set();
+  for (const e of memoryMdEntries) {
+    mdSlugs.add(e.file);
+    // 取 basename (e.g. 'memory/feedback_x.md' → 'feedback_x.md')
+    const base = e.file.includes('/') ? e.file.split('/').pop() : e.file;
+    mdSlugsByBasename.add(base);
+  }
   const mdNames = new Set(memoryMdEntries.map(e => e.name));
 
   const entitySlugs = entityNames.map(entityToSlug);
@@ -79,7 +97,7 @@ function diff(memoryMdEntries, entityNames) {
   for (let i = 0; i < entitySlugs.length; i++) {
     const slug = entitySlugs[i];
     const name = entityNames[i];
-    if (!mdSlugs.has(slug) && !mdNames.has(name)) {
+    if (!mdSlugs.has(slug) && !mdSlugsByBasename.has(slug) && !mdNames.has(name)) {
       missing.push({ entity: name, expected_slug: slug });
     }
   }
@@ -96,6 +114,27 @@ function diff(memoryMdEntries, entityNames) {
 
   return { missing, extra };
 }
+
+function diffWithBaseDir(memoryMdEntries, entityNames, baseDir) {
+  // v1.3.0 (B3 fix): 真正实现 extra 检测 — 检查 MEMORY.md 索引里 .md 文件
+  // 在 disk 上是否存在. baseDir 通常是 ~/.claude/projects/-Users-mac/memory/
+  if (!baseDir) {
+    return { missing: [], extra: [], skipped: 'no baseDir provided' };
+  }
+  const { missing } = diff(memoryMdEntries, entityNames);
+  const extra = [];
+  for (const entry of memoryMdEntries) {
+    if (!entry.file.endsWith('.md')) continue;
+    if (!entry.file.includes('memory/')) continue;  // Obsidian files, skip
+    const fullPath = path.join(baseDir, entry.file.replace(/^memory\//, ''));
+    if (!fs.existsSync(fullPath)) {
+      extra.push({ file: entry.file, expected_path: fullPath });
+    }
+  }
+  return { missing, extra };
+}
+
+export { diff, diffWithBaseDir };
 
 function main() {
   const args = process.argv.slice(2);
@@ -143,8 +182,9 @@ function main() {
     filteredOut = entityNames.length - filteredEntities.length;
   }
 
-  // Diff
-  const { missing, extra } = diff(mdIndex.entries, filteredEntities);
+  // Diff (v1.3.0 B3 fix: 用 diffWithBaseDir 真正检查 disk file 存在性)
+  const baseDir = path.dirname(memoryMdPath);
+  const { missing, extra } = diffWithBaseDir(mdIndex.entries, filteredEntities, baseDir);
 
   // 报告
   const report = {
@@ -159,7 +199,9 @@ function main() {
     drift: missing.length > 0,
     warnings: missing.length > 0
       ? [`${missing.length} Memory MCP entities not in MEMORY.md index`]
-      : [],
+      : (extra.length > 0
+        ? [`${extra.length} MEMORY.md entries point to missing disk files (ghost index)`]
+        : []),
   };
 
   console.log(JSON.stringify(report, null, 2));

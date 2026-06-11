@@ -337,3 +337,18 @@ T - Trackable:
 - **Always create relations.** Unlinked entity = ghost.
 - **Report after every sync** with TRUST 5 pass/fail table.
 - **Progressive disclosure:** Level 1 is the 15-line summary block above. Only read Level 2 (full pipeline) when actually executing a sync.
+
+## Conflict Resolution (v1.3.0)
+
+When Memory MCP and Obsidian KB disagree on an entity's content, **Obsidian is the source of truth**. Reason: Obsidian is git-tracked + human-edited + has audit trail; Memory MCP is derived state. Resolution order:
+1. **Obsidian wins** for human-edited content
+2. **Memory wins** only for auto-derived metadata (relation counts, observation limits)
+3. **Tie → user confirms** via explicit "sync from Obsidian" or "sync from Memory" command
+4. **Stale Memory** (>7 days no update + Obsidian newer) → re-derive from Obsidian
+
+## Exit Code Contract (v1.3.0)
+
+All `bin/*.mjs` scripts use a unified exit code scheme for CI:
+- **0** = clean (no action needed, or minor-warnings OK)
+- **1** = needs action (drift detected, needs compress, etc.)
+- **2** = script error (file not found, parse error, missing args)

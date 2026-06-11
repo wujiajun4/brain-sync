@@ -299,6 +299,14 @@ function main() {
 
   const result = audit();
 
+  // v1.3.0 (B6 fix): exit code 契约
+  //   0 = OK (healthy or minor-warnings)
+  //   1 = needs action (errors / dead skills)
+  //   2 = script error (parse failed, file not found, etc.)
+  if (result.parseError || result.fileNotFound) {
+    process.exit(2);
+  }
+
   if (isJson) {
     console.log(JSON.stringify(result, null, 2));
   } else if (isQuiet) {
