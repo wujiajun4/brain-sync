@@ -49,6 +49,12 @@ changelog: |
 
 # Brain Sync — "Fast reflexes, deep memory."
 
+> **v1.4.0 (D1 fix)**: 移除了具体延迟数字 (0.1s / 1s / 0.5s) — 那些是估算不是测量. 真延迟取决于:
+> 1. 实体数 (越多越慢)
+> 2. Obsidian 文件数 (扫描时间)
+> 3. Memory MCP server roundtrip
+> 用作设计意图的描述, 不用作性能声明.
+
 <!-- LEVEL 1 — Always read these 15 lines first -->
 
 | What | Action |
@@ -74,9 +80,9 @@ changelog: |
 
 | Layer | System | Role | Stores |
 |-------|--------|------|--------|
-| Small brain | Memory MCP | 0.1s reflex | Rules, triggers, tool names, belongs-to relations |
-| Big brain | Obsidian KB | 1s deep reasoning | Full docs, configs, troubleshooting, code blocks |
-| Code brain | codebase-memory | 0.5s code trace | Functions, classes, routes, call chains |
+| Small brain | Memory MCP | reflex layer | Rules, triggers, tool names, belongs-to relations |
+| Big brain | Obsidian KB | reasoning layer | Full docs, configs, troubleshooting, code blocks |
+| Code brain | codebase-memory | trace layer | Functions, classes, routes, call chains |
 
 ## What to sync (AND what NOT to sync)
 

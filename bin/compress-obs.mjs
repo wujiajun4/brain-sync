@@ -31,6 +31,13 @@ import path from 'path';
  *   - 部分 CJK 字符 (extension B+) = 2 UTF-16 units, 但 1 code point → 切点偏差
  * 用 [...str].length 测 code point 数.
  */
+/**
+ * v1.3.0 (B5 fix): 用 code points 算长度, 不是 UTF-16 code units.
+ * v1.4.0 (C2 fix): 200 字限制实测确认是脑同步自加, 不是 Memory MCP 强制.
+ *   实测: mcp__memory__add_observations 接受 250 字 observation 无报错.
+ *   但 200 仍是合理上限 (小脑 = 快速 lookup, 长文反而拖累).
+ *   故保留 200, 但文档化 "soft limit, MCP 不强制".
+ */
 const MAX_LEN = 200;
 
 function codePointLength(s) {

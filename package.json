@@ -1,0 +1,33 @@
+{
+  "name": "brain-sync",
+  "version": "1.4.0",
+  "description": "Memory MCP ↔ Obsidian sync + drift detection + TRUST 5 quality gate",
+  "type": "module",
+  "main": "bin/sync.mjs",
+  "bin": {
+    "brain-sync-compress": "./bin/compress-obs.mjs",
+    "brain-sync-check-drift": "./bin/check-drift.mjs",
+    "brain-sync-hot-trigger-audit": "./bin/hot-trigger-audit.mjs",
+    "brain-sync-sync": "./bin/sync.mjs",
+    "brain-sync-trust-check": "./bin/trust-check.mjs"
+  },
+  "scripts": {
+    "test": "node --test bin/__tests__/*.test.mjs",
+    "test:watch": "node --test --watch bin/__tests__/*.test.mjs",
+    "check": "node bin/check-drift.mjs ~/.claude/projects/-Users-mac/memory/MEMORY.md",
+    "sync:dry": "node bin/sync.mjs --dry-run < <(echo '{}')",
+    "trust": "node bin/trust-check.mjs --memory-md ~/.claude/projects/-Users-mac/memory/MEMORY.md"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "keywords": [
+    "memory",
+    "sync",
+    "knowledge-management",
+    "drift-detection",
+    "claude",
+    "skill"
+  ]
+}

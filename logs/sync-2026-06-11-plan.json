@@ -1,0 +1,318 @@
+{
+  "timestamp": "2026-06-11T05:21:08.063Z",
+  "obsidian_dir": "/Users/mac/obsidian/knowledge-base",
+  "memory_entity_count": 1,
+  "obsidian_md_count": 52,
+  "matched_count": 0,
+  "orphan_entity_count": 0,
+  "orphan_file_count": 51,
+  "drift_detected": true,
+  "operations": [
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/2026-06-07-session-summary.md",
+      "expected_name": "project_2026_06_07_session_summary",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_2026_06_07_session_summary'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/ace-token.md",
+      "expected_name": "project_ace_token",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_ace_token'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/aiprimetech.md",
+      "expected_name": "project_aiprimetech",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_aiprimetech'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/auto-sync-safety-net.md",
+      "expected_name": "project_auto_sync_safety_net",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_auto_sync_safety_net'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/brain-sync-v1-1-1-release.md",
+      "expected_name": "project_brain_sync_v1_1_1_release",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_brain_sync_v1_1_1_release'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/brain-sync-v1.3.0-backlog.md",
+      "expected_name": "project_brain_sync_v1.3.0_backlog",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_brain_sync_v1.3.0_backlog'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/brain-sync-v1.4.0-backlog.md",
+      "expected_name": "project_brain_sync_v1.4.0_backlog",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_brain_sync_v1.4.0_backlog'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/cc-switch-minimax.md",
+      "expected_name": "project_cc_switch_minimax",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_cc_switch_minimax'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/cc-switch-settings-sync.md",
+      "expected_name": "project_cc_switch_settings_sync",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_cc_switch_settings_sync'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/cc-switch-sqlite-blob-panic.md",
+      "expected_name": "project_cc_switch_sqlite_blob_panic",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_cc_switch_sqlite_blob_panic'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/claude-code-terminal-vs-desktop.md",
+      "expected_name": "project_claude_code_terminal_vs_desktop",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_claude_code_terminal_vs_desktop'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/claude-code-tooling-consistency.md",
+      "expected_name": "project_claude_code_tooling_consistency",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_claude_code_tooling_consistency'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/claude-hud-improved-v1-0-0-release.md",
+      "expected_name": "project_claude_hud_improved_v1_0_0_release",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_claude_hud_improved_v1_0_0_release'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/claude-shared-account-safety.md",
+      "expected_name": "project_claude_shared_account_safety",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_claude_shared_account_safety'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/ctx-execute-bypass-sandbox.md",
+      "expected_name": "project_ctx_execute_bypass_sandbox",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_ctx_execute_bypass_sandbox'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/github-auth-setup.md",
+      "expected_name": "project_github_auth_setup",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_github_auth_setup'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/harness-optimization-backlog.md",
+      "expected_name": "project_harness_optimization_backlog",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_harness_optimization_backlog'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/harness-self-critique.md",
+      "expected_name": "project_harness_self_critique",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_harness_self_critique'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/knowledge-save-sop.md",
+      "expected_name": "project_knowledge_save_sop",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_knowledge_save_sop'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/minimax-m3-base-url-switch-freeze.md",
+      "expected_name": "project_minimax_m3_base_url_switch_freeze",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_minimax_m3_base_url_switch_freeze'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/minimax-m3-migration.md",
+      "expected_name": "project_minimax_m3_migration",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_minimax_m3_migration'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/minimax-m3-thinking-budget.md",
+      "expected_name": "project_minimax_m3_thinking_budget",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_minimax_m3_thinking_budget'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/model-comparison-2026-06-07.md",
+      "expected_name": "project_model_comparison_2026_06_07",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_model_comparison_2026_06_07'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/orchestra-intake-alfredang.md",
+      "expected_name": "project_orchestra_intake_alfredang",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_orchestra_intake_alfredang'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/orchestra-intake-last30days.md",
+      "expected_name": "project_orchestra_intake_last30days",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_orchestra_intake_last30days'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/orchestra-intake-preflight.md",
+      "expected_name": "project_orchestra_intake_preflight",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_orchestra_intake_preflight'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/ot-comprehensive-report-2026-06-07.md",
+      "expected_name": "project_ot_comprehensive_report_2026_06_07",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_ot_comprehensive_report_2026_06_07'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/pre-release-checklist.md",
+      "expected_name": "project_pre_release_checklist",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_pre_release_checklist'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/preflight-v2-0-1-release.md",
+      "expected_name": "project_preflight_v2_0_1_release",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_preflight_v2_0_1_release'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/product-catalog.md",
+      "expected_name": "project_product_catalog",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_product_catalog'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/publish-sop.md",
+      "expected_name": "project_publish_sop",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_publish_sop'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/session-2026-06-06-night-recap.md",
+      "expected_name": "project_session_2026_06_06_night_recap",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_session_2026_06_06_night_recap'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/skill-description-bulk-rewrite-progress.md",
+      "expected_name": "project_skill_description_bulk_rewrite_progress",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_skill_description_bulk_rewrite_progress'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/skill-directory.md",
+      "expected_name": "project_skill_directory",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_skill_directory'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/skill-github-about-alfredang.md",
+      "expected_name": "project_skill_github_about_alfredang",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_skill_github_about_alfredang'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/skill-invocation-discipline.md",
+      "expected_name": "project_skill_invocation_discipline",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_skill_invocation_discipline'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/skill-lens-v1-1-0-release.md",
+      "expected_name": "project_skill_lens_v1_1_0_release",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_skill_lens_v1_1_0_release'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/skill-readme-alfredang.md",
+      "expected_name": "project_skill_readme_alfredang",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_skill_readme_alfredang'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/skill-selection-two-phase.md",
+      "expected_name": "project_skill_selection_two_phase",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_skill_selection_two_phase'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/skill-suggest-hook.md",
+      "expected_name": "project_skill_suggest_hook",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_skill_suggest_hook'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/skills-inventory.md",
+      "expected_name": "project_skills_inventory",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_skills_inventory'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/skills-optimization-2026-06-07.md",
+      "expected_name": "project_skills_optimization_2026_06_07",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_skills_optimization_2026_06_07'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/skills-quick-list.md",
+      "expected_name": "project_skills_quick_list",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_skills_quick_list'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/study-abroad-planner-v0.2.0-release.md",
+      "expected_name": "project_study_abroad_planner_v0.2.0_release",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_study_abroad_planner_v0.2.0_release'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/study-abroad-planner-v0.3.0-pipeline-notes.md",
+      "expected_name": "project_study_abroad_planner_v0.3.0_pipeline_notes",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_study_abroad_planner_v0.3.0_pipeline_notes'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/study-abroad-planner-v0.3.1-freshness-mechanism.md",
+      "expected_name": "project_study_abroad_planner_v0.3.1_freshness_mechanism",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_study_abroad_planner_v0.3.1_freshness_mechanism'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/test-archive-1.md",
+      "expected_name": "project_test_archive_1",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_test_archive_1'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/test-archive-2.md",
+      "expected_name": "project_test_archive_2",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_test_archive_2'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/tool-eval-bookmarks.md",
+      "expected_name": "project_tool_eval_bookmarks",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_tool_eval_bookmarks'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/tool-eval-release.md",
+      "expected_name": "project_tool_eval_release",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_tool_eval_release'"
+    },
+    {
+      "op": "add_entity",
+      "source_file": "/Users/mac/obsidian/knowledge-base/projects/tool-eval-v2-0-1-release.md",
+      "expected_name": "project_tool_eval_v2_0_1_release",
+      "hint": "Obsidian file not represented in Memory MCP. Suggest creating entity 'project_tool_eval_v2_0_1_release'"
+    }
+  ]
+}
